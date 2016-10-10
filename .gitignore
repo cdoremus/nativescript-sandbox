@@ -1,1 +1,2 @@
-ng2-maps/
+# Ignoring file holding my Google Maps API key
+ng2-maps/app/App_Resources/Android/values/nativescript_google_maps_api.xml
