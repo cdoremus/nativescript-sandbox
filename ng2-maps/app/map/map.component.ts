@@ -8,9 +8,6 @@ import * as timer from 'timer';
 // let mapsModule = require("nativescript-google-maps-sdk");
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 
-
-import 'ui/core/view';
-
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 
 @Component({
@@ -55,8 +52,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
     latitude: number = -33.86;
     longitude: number = 151.20;
-    latitudeInput: number;
-    longitudeInput: number;
     zoom: number = 8;
     tilt: number = 0;
     bearing: number = 0;
@@ -86,15 +81,10 @@ export class MapComponent implements OnInit, OnDestroy {
         this.mapView.addMarker(marker);
     }
 
-    updateCurrentLocationFromInput() {
-        this.latitude = this.latitudeInput;
-        this.longitude = this.longitudeInput;
-        this.placeMapMarker(this.latitude, this.longitude);
-    }
-
-    updateInputFromCurrentLocation() {
-        this.latitudeInput = this.latitude;
-        this.longitudeInput = this.longitude;
+    updateCurrentLocationFromInput(latitude: number, longitude: number) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.placeMapMarker(latitude, longitude);
     }
 
     setCurrentLocation() {
@@ -111,7 +101,6 @@ export class MapComponent implements OnInit, OnDestroy {
                     this.longitude = location.longitude;
                     this.latitude = location.latitude;
                     console.log('Current location reset (Lat/Long): ' + this.latitude + '/' + this.longitude);
-                    this.updateInputFromCurrentLocation();
                     this.placeMapMarker(this.latitude, this.longitude);
                 }})
             .catch(error => console.log('setCurrentLocation() ERROR: ', error));

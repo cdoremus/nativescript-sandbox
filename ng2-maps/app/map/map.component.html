@@ -8,15 +8,17 @@
             horizontalAlignment="right"></Label>
         <TextField col="1" row="0"
             horizontalAlignment="left" hint="Latitude"
-            text="" [(ngModel)]="latitudeInput"></TextField>
+            [text]="latitude"  #latitudeInput></TextField>
         <Label text="Longitude" col="0" row="1"
             horizontalAlignment="right" textWrap="true"></Label>
         <TextField col="1" row="1"
-            horizontalAlignment="left" hint="Longitude" text="" [(ngModel)]="longitudeInput"></TextField>
+            horizontalAlignment="left" hint="Longitude"
+            [text]="longitude" #longitudeInput></TextField>
     </GridLayout>
     <GridLayout columns="*,*" rows="auto" class="gridBorder">
-        <Button col="0" row="0" horizontalAlignment="right" class="updateButton"
-            text="Update" (tap)="updateCurrentLocationFromInput()"></Button>
+        <Button col="0" row="0" horizontalAlignment="right"
+            class="updateButton" text="Update"
+            (tap)="updateCurrentLocationFromInput(latitudeInput.text, longitudeInput.text)"></Button>
         <Label col="1" row="0" horizontalAlignment="left" class="myLocation"
         text="&#xf041;" (tap)="setCurrentLocation()"></Label>
     </GridLayout>
