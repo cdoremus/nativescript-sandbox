@@ -1,32 +1,34 @@
 ## NativeScript Sandbox ng2-maps branch
 
-### Thie repo holds code experiments with NativeScript and Angular 2 using geolocation and the Google Maps SDK
+### This repo holds code experiments with NativeScript and Angular 2 using native geolocation and the Google Maps SDK
 
-This app works with Android right now as I do not have a Mac to test on iOS.
-Install the android platform files with this command:
-```
-tns platfrm add android
-```
-
-Required NativeScript plugins need to be installed using this command:
-```
-tns plugin add nativescript-google-maps-sdk
-
-tns plugin add nativescript-geolocation
-
-```
-
-Issue this command to copy the file that will hold the Google Maps API key to the App_Resources folder:
-```
-cp -r node_modules/nativescript-google-maps-sdk/platforms/android/res/values app/App_Resources/Android/
-```
-When this is done, add your API key to the copied over nativescript_google_maps_api.xml file.
 
 ---
-
-In order for the geolocation plugin to work properly, the following needs to be added to the AndroidManifest.xml file in app/App_Resources/Android
-
+## Building and installing the application
+This has only been tested with Android right now as I do not own a Mac, but it should be runnable in iOS.
+Install the android and iOS platforms files using these commands:
 ```
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
+tns platform add android
+tns platform add ios
 ```
+Install the required NativeScript plugins using these commands:
+```
+tns plugin add nativescript-google-maps-sdk
+tns plugin add nativescript-geolocation
+```
+You need to obtain an `Google Maps Android API` and `Google Maps SDK for iOS` API key
+using the [Google Developers Console](https://console.developers.google.com) and then
+configure keys in the application by following the directions in
+the [Nativescript Google Maps SDK plugin Readme file](https://github.com/dapriett/nativescript-google-maps-sdk).
+
+Running the app in a USB-connected Android phone:
+```
+tns run android
+```
+The android emulator does not properly render the map created using Google Maps API, so this app needs to be run using a real phone.
+
+Run the app in iOS using this command:
+```
+tns run ios
+```
+It is not know if the app runs in the iOS emulator or just an iOS device.
