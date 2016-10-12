@@ -4,9 +4,9 @@ import {registerElement, isKnownView} from 'nativescript-angular/element-registr
 import { Location, getCurrentLocation } from 'nativescript-geolocation';
 import { RouterExtensions } from "nativescript-angular/router";
 import * as timer from 'timer';
-
-// let mapsModule = require("nativescript-google-maps-sdk");
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
+
+import { Toast } from '../shared/toast';
 
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 
@@ -104,9 +104,8 @@ export class MapComponent implements OnInit, OnDestroy {
                     this.placeMapMarker(this.latitude, this.longitude);
                 }})
             .catch(error => console.log('setCurrentLocation() ERROR: ', error));
+       Toast.showToast('Current location set');
     }
-
-
 
 /***************** Start Map Events *****************/
 
@@ -134,6 +133,18 @@ export class MapComponent implements OnInit, OnDestroy {
 
     onCameraChanged(event) {
         console.log("onCameraChanged()",JSON.stringify(event.camera));
+    }
+
+    onCoordinateTapped(args) {
+        console.log("onCoordinateTapped()", args);
+        let msg: string = "onCoordinateTapped() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude;
+        console.log(msg);
+        Toast.showToast(msg);
+    }
+
+    onCoordinateLongPress(args) {
+        console.log("onCoordinateLongPress()", args.position);
+        console.log("onCoordinateLongPress() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude);
     }
 
 /***************** End Map Events *****************/

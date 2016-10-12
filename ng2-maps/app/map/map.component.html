@@ -36,7 +36,11 @@
             (markerBeginDragging)="onMarkerBeginDragging($event)"
             (markerEndDragging)="onMarkerEndDragging($event)"
             (markerDrag)="onMarkerDrag($event)"
-            (cameraChanged)="onCameraChanged($event)"></MapView>
+            (cameraChanged)="onCameraChanged($event)"
+            (coordinateTapped)="onCoordinateTapped($event)"
+            (coordinateLongPress)="onCoordinateLongPress($event)"
+            >
+        </MapView>
     </GridLayout>
 
 </StackLayout>
