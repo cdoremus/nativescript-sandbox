@@ -11,7 +11,11 @@ Install the android and iOS platforms files using these commands:
 tns platform add android
 tns platform add ios
 ```
-Install the required NativeScript plugins using these commands:
+To add native Android or iOS code inside TypeScript without type errors (as I have done in the Toast class),
+install the tns-platform-declarations plugin and add records to references.d.ts
+detailed in [this stackoverflow answer](http://stackoverflow.com/questions/37523071/how-can-i-access-native-api-in-nativescript-when-i-use-typescript/37524018#37524018).
+
+Install the required NativeScript plugins for geolocation and the Google Maps SDK using these commands:
 ```
 tns plugin add nativescript-google-maps-sdk
 tns plugin add nativescript-geolocation
