@@ -136,7 +136,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }
 
     onCoordinateTapped(args) {
-        console.log("onCoordinateTapped()", args);
+        console.log("onCoordinateTapped()", args.position);
         let msg: string = "onCoordinateTapped() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude;
         console.log(msg);
         Toast.showToast(msg);
@@ -144,7 +144,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
     onCoordinateLongPress(args) {
         console.log("onCoordinateLongPress()", args.position);
-        console.log("onCoordinateLongPress() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude);
+        let msg: string = "onCoordinateLongPressed() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude;
+        console.log(msg);
+        Toast.showToast(msg);
     }
 
 /***************** End Map Events *****************/
