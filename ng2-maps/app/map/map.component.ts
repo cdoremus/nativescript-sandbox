@@ -12,46 +12,13 @@ registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView
 
 @Component({
     selector: "app-map",
-    styles: [
-        `
-        .mapBorder {
-            border-color: blue;
-            border-width: 5;
-        }
-        .gridBorder {
-        }
-        Label {
-            font-size: 20;
-            font-weight: bold;
-            text-align: center;
-            vertical-align: center;
-            margin-right: 5;
-        }
-        TextField {
-            width:350;
-        }
-        Label.myLocation {
-            font-family: "FontAwesome";
-            font-size: 55;
-            color: blue;
-            margin-left: 20;
-            margin-right: 5;
-        }
-        .updateButton {
-            font-size: 16;
-            font-style: normal;
-            font-weight: normal;
-            height: 60;
-        }
-
-        `
-    ],
-    templateUrl: "map/map.component.html",
+    styleUrls: ['map/map.component.css'],
+    templateUrl: 'map/map.component.html',
 })
 export class MapComponent implements OnInit, OnDestroy {
 
-    latitude: number = -33.86;
-    longitude: number = 151.20;
+    latitude: number = 43.979;
+    longitude: number = -70.363;
     zoom: number = 8;
     tilt: number = 0;
     bearing: number = 0;

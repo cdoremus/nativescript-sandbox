@@ -1,0 +1,37 @@
+/**
+ * Styles for the MapComponent.
+ *
+ */
+
+Label {
+    font-size: 20;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+    margin-right: 5;
+}
+
+TextField {
+    width:350;
+}
+
+Label.myLocation {
+    font-family: "FontAwesome";
+    font-size: 55;
+    color: blue;
+    margin-left: 20;
+    margin-right: 5;
+}
+
+.mapBorder {
+    border-color: blue;
+    border-width: 5;
+}
+
+.updateButton {
+    font-size: 16;
+    font-style: normal;
+    font-weight: normal;
+    height: 60;
+}
+
