@@ -137,14 +137,14 @@ export class MapComponent implements OnInit, OnDestroy {
 
     onCoordinateTapped(args) {
         console.log("onCoordinateTapped()", args.position);
-        let msg: string = "onCoordinateTapped() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude;
+        let msg: string = "Location Tapped (Long/Lat): " +  args.position.latitude.toFixed(3) + '/' + args.position.longitude.toFixed(3);
         console.log(msg);
         Toast.showToast(msg);
     }
 
     onCoordinateLongPress(args) {
         console.log("onCoordinateLongPress()", args.position);
-        let msg: string = "onCoordinateLongPressed() Long/Lat: " +  args.position.latitude + '/' + args.position.longitude;
+        let msg: string = "Location Long Pressed (Long/Lat): " +  args.position.latitude.toFixed(3) + '/' + args.position.longitude.toFixed(3);
         console.log(msg);
         Toast.showToast(msg);
     }
