@@ -57,7 +57,7 @@ export class MapComponent implements OnInit, OnDestroy {
     bearing: number = 0;
     padding: number[] = [5, 5, 5, 5];
 
-    mapView;
+    mapView: MapView;
 
     constructor() {
     }
@@ -85,6 +85,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.latitude = latitude;
         this.longitude = longitude;
         this.placeMapMarker(latitude, longitude);
+        this.moveMap(latitude, longitude);
     }
 
     setCurrentLocation() {
@@ -105,6 +106,15 @@ export class MapComponent implements OnInit, OnDestroy {
                 }})
             .catch(error => console.log('setCurrentLocation() ERROR: ', error));
        Toast.showToast('Current location set');
+    }
+
+    /**
+     * Move the displayed map to a new location
+     */
+    moveMap(latitude: number, longitude: number) {
+        this.mapView.latitude = latitude;
+        this.mapView.longitude = longitude;
+        this.mapView.updateCamera();
     }
 
 /***************** Start Map Events *****************/
@@ -137,7 +147,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
     onCoordinateTapped(args) {
         console.log("onCoordinateTapped()", args.position);
-        let msg: string = "Location Tapped (Long/Lat): " +  args.position.latitude.toFixed(3) + '/' + args.position.longitude.toFixed(3);
+        let lat: number = args.position.latitude;
+        let long: number = args.position.longitude;
+        let msg: string = "Location Tapped (Long/Lat): " +  lat.toFixed(3) + '/' + long.toFixed(3);
+        this.moveMap(lat, long);
         console.log(msg);
         Toast.showToast(msg);
     }
