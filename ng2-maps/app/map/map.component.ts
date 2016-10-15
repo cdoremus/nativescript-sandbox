@@ -4,7 +4,7 @@ import {registerElement, isKnownView} from 'nativescript-angular/element-registr
 import { Location, getCurrentLocation } from 'nativescript-geolocation';
 import { RouterExtensions } from "nativescript-angular/router";
 import * as timer from 'timer';
-import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
+import { MapView, Marker, Position, Polyline } from 'nativescript-google-maps-sdk';
 
 import { Toast } from '../shared/toast';
 
@@ -52,7 +52,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.latitude = latitude;
         this.longitude = longitude;
         this.placeMapMarker(latitude, longitude);
-        this.moveMap(latitude, longitude);
+        this.centerMap(latitude, longitude);
     }
 
     setCurrentLocation() {
@@ -78,10 +78,17 @@ export class MapComponent implements OnInit, OnDestroy {
     /**
      * Move the displayed map to a new location
      */
-    moveMap(latitude: number, longitude: number) {
+    centerMap(latitude: number, longitude: number) {
         this.mapView.latitude = latitude;
         this.mapView.longitude = longitude;
         this.mapView.updateCamera();
+    }
+
+    createPosition(latitude: number, longitude: number): Position {
+        let position = new Position();
+        position.latitude = latitude;
+        position.longitude = longitude;
+        return position;
     }
 
 /***************** Start Map Events *****************/
@@ -117,7 +124,7 @@ export class MapComponent implements OnInit, OnDestroy {
         let lat: number = args.position.latitude;
         let long: number = args.position.longitude;
         let msg: string = "Location Tapped (Long/Lat): " +  lat.toFixed(3) + '/' + long.toFixed(3);
-        this.moveMap(lat, long);
+        this.centerMap(lat, long);
         console.log(msg);
         Toast.showToast(msg);
     }
